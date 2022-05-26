@@ -163,7 +163,7 @@ for i in (range(len(similarity[0:5]))):
     ques_details.append(titles[ques_no])
     # print(URLs[ques_no])
     ques_details.append(URLs[ques_no])
-    f1 = open('Problems/P_'+str(ques_no+1)+'.txt', encoding='utf-8')
+    f1 = open('Problems/P_'+str(ques_no+1)+'.txt')
     docs = str(f1.read())
 
     docs = docs.replace("\\n", " ")
