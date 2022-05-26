@@ -63,31 +63,11 @@ app.get("/search", (req, res) => {
 
   // setTimeout(() => {
   const arr = [
-    {
-      title: "ABC",
-      url: "https://google.com",
-      statement: "The sum of two elements.",
-    },
-    {
-      title: "ABC",
-      url: "https://google.com",
-      statement: "The sum of two elements.",
-    },
-    {
-      title: "ABC",
-      url: "https://google.com",
-      statement: "The sum of two elements.",
-    },
-    {
-      title: "ABC",
-      url: "https://google.com",
-      statement: "The sum of two elements.",
-    },
-    {
-      title: "ABC",
-      url: "https://google.com",
-      statement: "The sum of two elements.",
-    },
+    ["ABC", "https://google.com", "The sum of two elements."],
+    ["ABC", "https://google.com", "The sum of two elements."],
+    ["ABC", "https://google.com", "The sum of two elements."],
+    ["ABC", "https://google.com", "The sum of two elements."],
+    ["ABC", "https://google.com", "The sum of two elements."],
   ];
   res.json(arr);
   // }, 2000);
