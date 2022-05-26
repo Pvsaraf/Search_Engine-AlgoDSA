@@ -114,6 +114,6 @@ app.get("/search", (req, res) => {
   // }, 2000);
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("I am on PORT no. " + PORT);
 });
