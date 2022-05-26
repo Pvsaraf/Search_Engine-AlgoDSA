@@ -7,54 +7,55 @@
     <title>SEARCH ENGINE</title>
 
     <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
     <h1>SEARCH ENGINE</h1>
     <form>
-      <input type="text" name="question" id="question" />
-      <input type="submit" value="Question asked" />
+      <!-- <input type="text" name="question" id="question" />
+      <input type="submit" value="Question asked" /> -->
+      <input type="text" placeholder="Search.." name="question" id="question" />
+      <button type="submit"><i class="fa fa-search"></i></button>
     </form>
 
     <div class="loading"></div>
     <div class="question">
-      <div class="title">
-        <div class="url">
-          <a href=""></a>
-        </div>
-        <div class="body"></div>
+      <div class="title"></div>
+      <div class="url">
+        <!-- <a href=""></a> -->
       </div>
+      <div class="body"></div>
     </div>
     <div class="question">
-      <div class="title">
-        <div class="url">
-          <a href=""></a>
-        </div>
-        <div class="body"></div>
+      <div class="title"></div>
+      <div class="url">
+        <!-- <a href=""></a> -->
       </div>
+      <div class="body"></div>
     </div>
     <div class="question">
-      <div class="title">
-        <div class="url">
-          <a href=""></a>
-        </div>
-        <div class="body"></div>
+      <div class="title"></div>
+      <div class="url">
+        <!-- <a href=""></a> -->
       </div>
+      <div class="body"></div>
     </div>
     <div class="question">
-      <div class="title">
-        <div class="url">
-          <a href=""></a>
-        </div>
-        <div class="body"></div>
+      <div class="title"></div>
+      <div class="url">
+        <!-- <a href=""></a> -->
       </div>
+      <div class="body"></div>
     </div>
     <div class="question">
-      <div class="title">
-        <div class="url">
-          <a href=""></a>
-        </div>
-        <div class="body"></div>
+      <div class="title"></div>
+      <div class="url">
+        <!-- <a href=""></a> -->
       </div>
+      <div class="body"></div>
     </div>
   </body>
 </html>
@@ -80,6 +81,8 @@
 
     for (let i = 0; i < 5; i++) {
       titles[i].innerHTML = ``;
+      urls[i].innerHTML = ``;
+      quesBody[i].innerHTML = ``;
     }
 
     loading.innerHTML = `Loading...`;
@@ -91,14 +94,23 @@
         method: "GET",
       });
       const data = await res.json();
-      //   console.log(data);
+      // console.log(data[0]);
+      // console.log(data[0][2]);
+
+      // arr = data;
+      // console.log(arr);
 
       loading.innerHTML = ``;
 
       for (let i = 0; i < 5; i++) {
-        titles[i].innerHTML = `<h3>${data[i].title}</h3>`;
-        urls[i].innerHTML = `<h3>${data[i].url}</h3>`;
-        quesBody[i].innerHTML = `<h3>${data[i].body}</h3>`;
+        titles[i].innerHTML = `<p> <h2>${i + 1}. <a href=${data[i][1]}>${
+          data[i][0]
+        }</h2></p></a>`;
+        // urls[i].innerHTML = `<a href=${data[i][1]}></a>`;
+        // console.log(urls[i].innerHTML);
+        quesBody[
+          i
+        ].innerHTML = `<p><p><h4> &nbsp; &nbsp; &nbsp; ${data[i][2]}.....</h4></p></p>`;
       }
     } catch (error) {
       alert(error);
