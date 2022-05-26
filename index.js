@@ -1,6 +1,7 @@
 const express = require("express");
 const ejs = require("ejs");
 const path = require("path");
+
 const spawn = require("child_process").spawn;
 
 const app = express();
@@ -24,32 +25,9 @@ app.get("/search", (req, res) => {
   const question = query.question;
 
   // Tf IDF algo
-  // <%-
-  // <script>
-  //   $.ajax({
-  //     type: "POST",
-  //     url: "~/GenerateTopQuestions.py",
-  //     data: { param: text },
-  //   }).done(function (o) {
-  //     // do something
-  //     arr = generateTopQuestions(question);
-  //   });
-  // </script>
-  // %>
-  // console.log(question);
+
   const childPython = spawn("python", ["./GenerateTopQuestions.py", question]);
   childPython.stdout.on("data", function (data) {
-    // console.log(typeof data);
-    // // strArr = data.toString();
-    // // console.log(typeof strArr);
-    // var arr = [];
-    // // arr = data.toString();
-    // arr = data;
-    // console.log(arr);
-    // // arr = data;
-    // // console.log(arr);
-    // res.json(data.toString());
-
     var data_str = data.toString();
     var arr = data_str.split("'], ['");
 
@@ -76,6 +54,7 @@ app.get("/search", (req, res) => {
 
     res.json(str_arr);
   });
+
   childPython.stderr.on("data", (data) => {
     console.error(`stderr: ${data}`);
   });
@@ -112,6 +91,19 @@ app.get("/search", (req, res) => {
   //   ];
   //   res.json(arr);
   // }, 2000);
+});
+
+app.get("/about", (req, res) => {
+  res.send("ABOUT PAGE");
+});
+
+app.get("/question/:id", (req, res) => {
+  const id = req.params.id;
+  // f1 = open("Problems/Problem_Titles.txt");
+  // docs = str(f1.read());
+  // titles = docs.split("\n");
+  res.locals.question = "titles[id - 1];";
+  res.render("question");
 });
 
 app.listen(PORT, () => {

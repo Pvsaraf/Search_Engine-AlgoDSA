@@ -7,3 +7,16 @@ h1 {
     color: black;
     text-align: center;
 }
+input::placeholder{
+    color: magenta;
+}
+
+input {
+    color: black;
+    width: 40%;
+}
+
+button{
+    background-color: lightblue;
+
+}

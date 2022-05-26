@@ -93,12 +93,8 @@
       const res = await fetch(`/search?question=${question}`, {
         method: "GET",
       });
+      console.log(res);
       const data = await res.json();
-      // console.log(data[0]);
-      // console.log(data[0][2]);
-
-      // arr = data;
-      // console.log(arr);
 
       loading.innerHTML = ``;
 
