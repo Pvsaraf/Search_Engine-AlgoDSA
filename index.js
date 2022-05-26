@@ -51,7 +51,7 @@ app.get("/search", (req, res) => {
     // arr = []
 
     // for(let i=0;i<length(data_str)
-    console.log(str_arr);
+    console.log(str_arr[0]);
     res.json(str_arr);
   });
 
