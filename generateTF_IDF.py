@@ -5,21 +5,10 @@ import math
 import string
 import re
 
-# import nltk
-# nltk.download('wordnet')
-# nltk.download('omw-1.4')
-
-# from nltk.stem import WordNetLemmatizer
-  
-# lemmatizer = WordNetLemmatizer()
-
 import pandas as pd
 import numpy as np
 
-
 from gensim.parsing.preprocessing import remove_stopwords
-
-# from GenerateTopQuestions import generateTopQuestions
 
 
 keywords = []
@@ -29,12 +18,7 @@ sentence = []
 for cnt in range(0, 965):
     f1 = open("./Problems/P_" + str(cnt + 1) + ".txt", encoding="utf-8")
     docs = str(f1.read())
-    # print(docs)
-
-    # print(docs)
-
-    # print(len(docs))
-    # filtered_sentence = remove_stopwords(docs)
+    
     docs = docs.replace("\\n", " ")
     documents_clean = []
 
@@ -53,7 +37,7 @@ for cnt in range(0, 965):
     # Remove the doubled space
     document_test = re.sub(r"\s{2,}", " ", document_test)
     documents_clean.append(document_test)
-    # print(documents_clean)
+    
 
     filtered_sentence = remove_stopwords(documents_clean[0])
 
@@ -74,14 +58,7 @@ keywords = sorted(set(keywords))
 f1 = open("./Keywords.txt", "w+")
 f1.write("\n".join(keywords))
 
-# print(keywords)
-# print(len(keywords))
-# print("\n")
 
-# print((sentence[0]))
-# print(len(sentence[1]))
-
-# print(sentence[0].count('example'))
 
 
 # Calculating TF
@@ -89,7 +66,7 @@ f1.write("\n".join(keywords))
 TF = []
 for i in range(len(sentence)):
     no_of_keywords_local = len(sentence[i])
-    # tf_local = []
+    
     for j in range(len(keywords)):
         cnt = sentence[i].count(keywords[j])
         if cnt == 0:
@@ -99,12 +76,10 @@ for i in range(len(sentence)):
         tf_local.append(j)
         tf_local.append(cnt / no_of_keywords_local)
         TF.append(tf_local)
-    # print(tf_local)
+    
 
 
-# print(TF)
-# print(len(TF))
-# print(len(TF[1]))
+
 
 # Calculating IDF
 
@@ -121,12 +96,11 @@ for i in range(len(keywords)):
 for i in range(len(TF)):
     counts[TF[i][1]] += 1
 
-# print(counts)
+
 for i in range(len(keywords)):
     IDF.append((1 + math.log(N / counts[i])))
 
-# print(IDF)
-# print(len(IDF))
+
 
 f1 = open("./IDF.txt", "w+")
 ToAdd = ""
@@ -151,7 +125,7 @@ for i in range(len(TF)):
     Importance_Matrix.append(Imp_Matrix)
 
 
-# print((Importance_Matrix))
+
 
 f1 = open("./TFIDF.txt", "w+")
 ToAdd = ""
@@ -180,8 +154,7 @@ for i in range(len(Importance_Matrix)):
 for i in range(len(Magnitude)):
     Magnitude[i] = math.sqrt(Magnitude[i])
 
-# pr
-# print(Magnitude)
+
 
 f1 = open("./Magnitude.txt", "w+")
 ToAdd = ""
@@ -190,9 +163,7 @@ for i in Magnitude:
     ToAdd += str(i)
     ToAdd += "\n"
 f1.write(ToAdd)
-# print(Magnitude)
+
 
 f1.close()
 
-# print(generateTopQuestions(
-#     "Sum of two numbers Magnus tree Given Number diagram integers array string graph"))

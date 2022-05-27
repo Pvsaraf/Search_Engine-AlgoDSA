@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SEARCH ENGINE</title>
 
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="/styles.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link rel="icon" type="image/x-icon" href="/Favicon.ico" />
   </head>
   <body>
     <h1>SEARCH ENGINE</h1>
@@ -22,39 +23,30 @@
     </form>
 
     <div class="loading"></div>
+    <div class="empty"></div>
     <div class="question">
       <div class="title"></div>
-      <div class="url">
-        <!-- <a href=""></a> -->
-      </div>
+      <div class="url"></div>
       <div class="body"></div>
     </div>
     <div class="question">
       <div class="title"></div>
-      <div class="url">
-        <!-- <a href=""></a> -->
-      </div>
+      <div class="url"></div>
       <div class="body"></div>
     </div>
     <div class="question">
       <div class="title"></div>
-      <div class="url">
-        <!-- <a href=""></a> -->
-      </div>
+      <div class="url"></div>
       <div class="body"></div>
     </div>
     <div class="question">
       <div class="title"></div>
-      <div class="url">
-        <!-- <a href=""></a> -->
-      </div>
+      <div class="url"></div>
       <div class="body"></div>
     </div>
     <div class="question">
       <div class="title"></div>
-      <div class="url">
-        <!-- <a href=""></a> -->
-      </div>
+      <div class="url"></div>
       <div class="body"></div>
     </div>
   </body>
@@ -69,47 +61,47 @@
   const urls = document.querySelectorAll(".url");
   const quesBody = document.querySelectorAll(".body");
   const loading = document.querySelector(".loading");
-
-  //   console.log(questions);
-  //   console.log(titles);
-  //   console.log(urls);
-  //   console.log(quesBody);
+  const empty = document.querySelector(".empty");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const question = questionElement.value;
 
-    for (let i = 0; i < 5; i++) {
-      titles[i].innerHTML = ``;
-      urls[i].innerHTML = ``;
-      quesBody[i].innerHTML = ``;
-    }
-
-    loading.innerHTML = `Loading...`;
-
-    // Fetch
-
-    try {
-      const res = await fetch(`/search?question=${question}`, {
-        method: "GET",
-      });
-      console.log(res);
-      const data = await res.json();
-
-      loading.innerHTML = ``;
-
+    if (question.length == 0) {
+      empty.innerHTML = `<h3><p>NO QUERY ENTERED!!!!!</p></h3><p>Enter a valid query</p>`;
+    } else {
       for (let i = 0; i < 5; i++) {
-        titles[i].innerHTML = `<p> <h2>${i + 1}. <a href=${data[i][1]}>${
-          data[i][0]
-        }</h2></p></a>`;
-        // urls[i].innerHTML = `<a href=${data[i][1]}></a>`;
-        // console.log(urls[i].innerHTML);
-        quesBody[
-          i
-        ].innerHTML = `<p><p><h4> &nbsp; &nbsp; &nbsp; ${data[i][2]}.....</h4></p></p>`;
+        titles[i].innerHTML = ``;
+        urls[i].innerHTML = ``;
+        quesBody[i].innerHTML = ``;
       }
-    } catch (error) {
-      alert(error);
+
+      loading.innerHTML = `Loading...`;
+
+      // Fetch
+
+      try {
+        const res = await fetch(`/search?question=${question}`, {
+          method: "GET",
+        });
+
+        const data = await res.json();
+
+        empty.innerHTML = ``;
+        loading.innerHTML = ``;
+
+        for (let i = 0; i < 5; i++) {
+          titles[i].innerHTML = `<p> <h2>${i + 1}. <a href=${data[i][1]}>${
+            data[i][0]
+          }</h2></p></a>`;
+
+          quesBody[
+            i
+          ].innerHTML = `<p><p><h4> &nbsp; &nbsp; &nbsp; ${data[i][2]}.....</h4></p></p>`;
+        }
+      } catch (error) {
+        alert(error);
+      }
     }
   });
 </script>

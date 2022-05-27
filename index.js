@@ -57,13 +57,6 @@ Keywords = data.split(/\r?\n/);
 
 // console.log(Keywords);
 
-// for (let i = 0; i < Keywords.length; i++) {
-//   Keywords[i] = lemmatizer(Keywords[i]);
-// }
-
-// const check = spell.check("helped");
-// console.log(check.length == 0);
-
 // Reading IDF
 
 IDF = [];
@@ -185,13 +178,13 @@ app.get("/search", (req, res) => {
     ques_no = similarity[i][1];
     ques_details.push(titles[ques_no]);
     ques_details.push(URLs[ques_no]);
-    // console.log(ques_no.toString());
+
     fileData = fs.readFileSync(
       "./Problems/P_" + (ques_no + 1).toString() + ".txt",
       { encoding: "utf-8", flag: "r" }
     );
     fileData = fileData.replace(/\\n/g, " ");
-    // console.log(fileData.slice(2, -1));
+
     if (fileData.length > 100) ques_details.push(fileData.slice(2, 100));
     else ques_details.push(fileData.slice(2, -1));
     arr.push(ques_details);
@@ -203,7 +196,7 @@ app.get("/search", (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-  res.send("ABOUT PAGE");
+  res.send("<h1>ABOUT PAGE</h1>");
 });
 
 app.get("/question/:id", (req, res) => {
