@@ -47,12 +47,22 @@ Magnitude.splice(-1);
 // Reading Keywords
 
 Keywords = [];
+
 data = fs.readFileSync("./Keywords.txt", {
   encoding: "utf-8",
   flag: "r",
 });
 
 Keywords = data.split(/\r?\n/);
+
+// console.log(Keywords);
+
+// for (let i = 0; i < Keywords.length; i++) {
+//   Keywords[i] = lemmatizer(Keywords[i]);
+// }
+
+// const check = spell.check("helped");
+// console.log(check.length == 0);
 
 // Reading IDF
 
@@ -99,7 +109,11 @@ app.get("/search", (req, res) => {
   question = question.toLowerCase();
   query_keywords = question.split(" ");
   query_keywords = removeStopwords(query_keywords);
+  // for (let i = 0; i < query_keywords.length; i++) {
+  //   query_keywords[i] = lemmatizer(query_keywords[i]);
+  // }
   query_keywords = query_keywords.sort();
+  // console.log(query_keywords);
 
   // Query TF
   let query_TF = [];
@@ -107,7 +121,7 @@ app.get("/search", (req, res) => {
   for (let i = 0; i < Keywords.length; i++) {
     let cnt = query_keywords.filter((x) => x === Keywords[i]).length;
     if (cnt == 0) continue;
-    // console.log(cnt, Keywords[i]);
+
     tf_local = [];
     tf_local.push(0);
     tf_local.push(i);
@@ -162,7 +176,7 @@ app.get("/search", (req, res) => {
     similarity[i][0] =
       similarity[i][0] / (parseFloat(Magnitude[i]) * query_magnitude);
   }
-  // console.log(similarity.sort().reverse());
+  similarity = similarity.sort().reverse();
 
   arr = [];
 
@@ -185,16 +199,6 @@ app.get("/search", (req, res) => {
 
   // List of top 5 questions
 
-  // setTimeout(() => {
-  // const arr = [
-  //   ["ABC", "https://google.com", "The sum of two elements."],
-  //   ["ABC", "https://google.com", "The sum of two elements."],
-  //   ["ABC", "https://google.com", "The sum of two elements."],
-  //   ["ABC", "https://google.com", "The sum of two elements."],
-  //   ["ABC", "https://google.com", "The sum of two elements."],
-  // ];
-
-  // }, 2000);
   res.json(arr);
 });
 
@@ -204,10 +208,9 @@ app.get("/about", (req, res) => {
 
 app.get("/question/:id", (req, res) => {
   const id = req.params.id;
-  // f1 = open("Problems/Problem_Titles.txt");
-  // docs = str(f1.read());
-  // titles = docs.split("\n");
-  res.locals.question = "titles[id - 1];";
+  // console.log(id);
+  res.locals.question_name = titles[id - 1];
+  res.locals.question_url = URLs[id - 1];
   res.render("question");
 });
 

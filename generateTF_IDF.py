@@ -5,9 +5,17 @@ import math
 import string
 import re
 
+# import nltk
+# nltk.download('wordnet')
+# nltk.download('omw-1.4')
+
+# from nltk.stem import WordNetLemmatizer
+  
+# lemmatizer = WordNetLemmatizer()
 
 import pandas as pd
 import numpy as np
+
 
 from gensim.parsing.preprocessing import remove_stopwords
 
@@ -29,8 +37,6 @@ for cnt in range(0, 965):
     # filtered_sentence = remove_stopwords(docs)
     docs = docs.replace("\\n", " ")
     documents_clean = []
-    # for :
-    # Remove Unicode
 
     # Remove Mentions
     document_test = re.sub(r"@\w+", " ", docs)
@@ -41,7 +47,7 @@ for cnt in range(0, 965):
     # Remove punctuations
     document_test = re.sub(r"[%s]" % re.escape(string.punctuation), " ", document_test)
 
-    # Lowercase the numbers
+    #  the numbers
     document_test = re.sub(r"[0-9]", " ", document_test)
 
     # Remove the doubled space
@@ -53,9 +59,7 @@ for cnt in range(0, 965):
 
     # print(filtered_sentence)
     filtered_sentence = sorted(filtered_sentence.split(" "))
-    for k in filtered_sentence:
-        if len(k) == 1:
-            filtered_sentence.remove(k)
+    
     # print(filtered_sentence)
     sentence.append(filtered_sentence)
 

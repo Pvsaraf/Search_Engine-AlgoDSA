@@ -13,7 +13,9 @@
     "child_process": "^1.0.2",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
+
     "remove-stopwords": "^1.0.3",
+
     "stopword": "^2.0.2"
   }
 }
