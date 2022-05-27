@@ -2,10 +2,6 @@
 import math
 
 
-
-
-
-
 import sys
 
 from gensim.parsing.preprocessing import remove_stopwords
@@ -154,7 +150,7 @@ for i in range(len(Magnitude)):
 
 similarity = sorted(similarity, reverse=True)
 
-# print((similarity[0:5]))
+# print((similarity))
 arr = []
 for i in (range(len(similarity[0:5]))):
     ques_details = []

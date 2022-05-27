@@ -952,7 +952,6 @@ csharp
 cstart
 ct
 ctaagt
-cthe
 cubes
 cup
 cups
@@ -4026,16 +4025,12 @@ wwrrbbww
 wwrrrbbww
 wwww
 x
-xa
-xaa
 xaelpsy
 xayb
 xb
 xbc
 xc
 xcnti
-xe
-xef
 xend
 xi
 xii
