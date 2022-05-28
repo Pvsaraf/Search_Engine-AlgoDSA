@@ -36,10 +36,12 @@ button{
     color: red;
     background-color: lightgray;
 }
-/* 
+
 .question{
-    text-align: left;
-} */
+    text-align: left; 
+    position: relative;
+    left: 350px;
+}
 
 .body {
     font-size: large;
