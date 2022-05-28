@@ -65,16 +65,14 @@
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const question = questionElement.value;
-
+    for (let i = 0; i < 5; i++) {
+      titles[i].innerHTML = ``;
+      urls[i].innerHTML = ``;
+      quesBody[i].innerHTML = ``;
+    }
     if (question.length == 0) {
       empty.innerHTML = `<h3><p>NO QUERY ENTERED!!!!!</p></h3><p>Enter a valid query</p>`;
     } else {
-      for (let i = 0; i < 5; i++) {
-        titles[i].innerHTML = ``;
-        urls[i].innerHTML = ``;
-        quesBody[i].innerHTML = ``;
-      }
-
       loading.innerHTML = `Loading...`;
 
       // Fetch
@@ -98,6 +96,7 @@
             i
           ].innerHTML = `<p><p><h4> &nbsp; &nbsp; &nbsp; ${data[i][2]}.....</h4></p></p>`;
         }
+        empty.innerHTML = ``;
       } catch (error) {
         alert(error);
       }
