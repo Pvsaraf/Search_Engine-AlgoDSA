@@ -90,9 +90,9 @@
         loading.innerHTML = ``;
 
         for (let i = 0; i < 5; i++) {
-          titles[i].innerHTML = `<p> <h2>${i + 1}. <a href=${data[i][1]}>${
-            data[i][0]
-          }</h2></p></a>`;
+          titles[i].innerHTML = `<p> <h2>${i + 1}. <a href=${
+            data[i][1]
+          } target="blank">${data[i][0]}</h2></p></a>`;
 
           quesBody[
             i
